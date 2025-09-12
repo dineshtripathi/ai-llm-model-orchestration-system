@@ -1,3 +1,9 @@
+import sys
+import os
+# Add the project root to Python path
+sys.path.append(os.path.dirname(os.path.dirname(__file__)))
+
+
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 from orchestration.core.orchestrator import ModelOrchestrator
