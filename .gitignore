@@ -11,3 +11,20 @@ venv/
 .vscode/
 *.log
 .DS_Store
+venv/
+.env
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.so
+.idea/
+.vscode/
+*.log
+.DS_Store
+chroma_db/
+# Add these lines to .gitignore
+*.log
+crawled_data/
+temp_*
