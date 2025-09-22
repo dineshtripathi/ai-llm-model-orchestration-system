@@ -1,10 +1,10 @@
-The markdown formatting needs adjustment for GitHub. Here's the corrected version:
-
-```markdown
 # AI Model Orchestration System
 
-Enterprise-grade orchestration platform for managing multiple local AI models with intelligent routing, RAG capabilities, and dynamic data ingestion.
+```markdown
 
+
+Enterprise-grade orchestration platform for managing multiple local AI models with intelligent routing, RAG capabilities, and dynamic data ingestion.
+```
 ## Table of Contents
 
 - [Overview](#overview)
@@ -33,7 +33,7 @@ This system addresses enterprise AI infrastructure challenges by providing intel
 
 ## System Architecture
 
-```
+
 ┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐
 │   Web Crawlers  │    │  RAG Pipeline   │    │ Model Orchestra │
 │                 │    │                 │    │                 │
@@ -53,7 +53,7 @@ This system addresses enterprise AI infrastructure challenges by providing intel
          │  │ REST API    │  │ Dashboard   │  │ Python   │ │
          │  └─────────────┘  └─────────────┘  └──────────┘ │
          └─────────────────────────────────────────────────┘
-```
+
 
 ## Features
 
