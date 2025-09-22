@@ -33,7 +33,7 @@ This system addresses enterprise AI infrastructure challenges by providing intel
 
 ## System Architecture
 
-
+```
 ┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐
 │   Web Crawlers  │    │  RAG Pipeline   │    │ Model Orchestra │
 │                 │    │                 │    │                 │
@@ -54,7 +54,7 @@ This system addresses enterprise AI infrastructure challenges by providing intel
          │  └─────────────┘  └─────────────┘  └──────────┘ │
          └─────────────────────────────────────────────────┘
 
-
+```
 ## Features
 
 ### Model Orchestration
