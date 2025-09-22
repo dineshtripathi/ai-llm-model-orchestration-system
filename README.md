@@ -1,4 +1,4 @@
-Here's a comprehensive README for your AI orchestration system:
+The markdown formatting needs adjustment for GitHub. Here's the corrected version:
 
 ```markdown
 # AI Model Orchestration System
@@ -6,6 +6,7 @@ Here's a comprehensive README for your AI orchestration system:
 Enterprise-grade orchestration platform for managing multiple local AI models with intelligent routing, RAG capabilities, and dynamic data ingestion.
 
 ## Table of Contents
+
 - [Overview](#overview)
 - [System Architecture](#system-architecture)
 - [Features](#features)
@@ -23,6 +24,7 @@ Enterprise-grade orchestration platform for managing multiple local AI models wi
 This system addresses enterprise AI infrastructure challenges by providing intelligent model orchestration, retrieval-augmented generation (RAG), and dynamic knowledge base management. Built for production scalability with local-first architecture.
 
 **Key Capabilities:**
+
 - Routes queries to optimal AI models based on content analysis
 - Manages concurrent requests with load balancing
 - Maintains dynamic knowledge base through web crawling
@@ -56,18 +58,21 @@ This system addresses enterprise AI infrastructure challenges by providing intel
 ## Features
 
 ### Model Orchestration
+
 - **Intelligent Routing**: Automatically selects optimal models based on query analysis
 - **Load Balancing**: Handles concurrent requests with configurable limits (default: 3)
 - **Health Monitoring**: Tracks model availability, response times, and error rates
 - **Auto-scaling**: Models load/unload based on memory constraints and demand
 
 ### RAG System
+
 - **Vector Database**: ChromaDB with persistent storage and semantic search
 - **Document Processing**: Automated chunking and metadata extraction
 - **Context Enhancement**: Retrieves relevant documents to augment model responses
 - **Multi-format Support**: Text files, markdown, web content, API data
 
 ### Web Crawling
+
 - **Real-time Data**: Pulls latest information from multiple sources
 - **API Integration**: StackOverflow, GitHub, NewsAPI, Alpha Vantage
 - **Search Capabilities**: DuckDuckGo integration for current web content
@@ -75,6 +80,7 @@ This system addresses enterprise AI infrastructure challenges by providing intel
 - **Scheduled Updates**: Configurable crawling intervals
 
 ### Interfaces
+
 - **REST API**: Production-ready endpoints with auto-documentation
 - **Web Dashboard**: Real-time monitoring and query interface
 - **Side-by-side Comparison**: RAG vs non-RAG response analysis
@@ -83,8 +89,9 @@ This system addresses enterprise AI infrastructure challenges by providing intel
 ## Models & Technologies
 
 ### AI Models (Ollama)
+
 | Model | Size | Use Case | Category |
-|-------|------|----------|----------|
+| --- | --- | --- | --- |
 | neural-chat:7b-v3.3-q4_0 | 4.1GB | Fast responses, greetings | General |
 | llama3.1:8b | 4.9GB | General purpose queries | General |
 | codellama:13b | 7.4GB | Programming tasks | Coding |
@@ -92,6 +99,7 @@ This system addresses enterprise AI infrastructure challenges by providing intel
 | llama3.1:70b | 42GB | Deep reasoning | Reasoning |
 
 ### Technical Stack
+
 - **Python 3.13** - Core language
 - **FastAPI** - REST API framework
 - **Streamlit** - Web dashboard
@@ -101,6 +109,7 @@ This system addresses enterprise AI infrastructure challenges by providing intel
 - **Ollama** - Local model management
 
 ### Hardware Requirements
+
 - **GPU**: RTX 5090 (24GB VRAM) or equivalent
 - **RAM**: 141GB DDR5 (recommended)
 - **Storage**: 100GB+ for models and data
@@ -109,6 +118,7 @@ This system addresses enterprise AI infrastructure challenges by providing intel
 ## Installation
 
 ### Prerequisites
+
 ```bash
 # Install Ollama
 curl -fsSL https://ollama.ai/install.sh | sh
@@ -122,6 +132,7 @@ ollama pull llama3.1:70b
 ```
 
 ### Setup
+
 ```bash
 # Clone repository
 git clone https://github.com/yourusername/ai-model-orchestration-system.git
@@ -136,6 +147,7 @@ pip install -r requirements.txt
 ```
 
 ### Environment Variables (Optional)
+
 ```bash
 # For enhanced crawling capabilities
 export NEWS_API_KEY="your_newsapi_key"
@@ -145,6 +157,7 @@ export ALPHA_VANTAGE_KEY="your_alphavantage_key"
 ## Usage
 
 ### Start Core Services
+
 ```bash
 # Start model orchestration API
 python api/orchestration_api.py
@@ -159,6 +172,7 @@ streamlit run dashboard/rag_dashboard.py
 ### Basic Usage Examples
 
 #### Query Routing
+
 ```python
 from orchestration.core.orchestrator import ModelOrchestrator
 
@@ -168,6 +182,7 @@ result = orchestrator.process_request_sync("Write Python code for sorting")
 ```
 
 #### RAG Queries
+
 ```python
 from rag.retrieval.rag_orchestrator import RAGOrchestrator
 
@@ -177,6 +192,7 @@ result = rag.search_and_generate("What is machine learning?")
 ```
 
 #### Web Crawling
+
 ```python
 from rag.crawler.api_crawler import APICrawler
 
@@ -190,15 +206,18 @@ result = crawler.comprehensive_crawl([
 ## API Reference
 
 ### Model Orchestration Endpoints
+
 - `POST /orchestrate` - Submit query for intelligent routing
 - `GET /system/status` - Get system health and metrics
 - `GET /recommendations/{query}` - Get routing recommendations
 
 ### RAG Endpoints  
+
 - `POST /rag/query` - RAG-enhanced query processing
 - `GET /rag/stats` - Knowledge base statistics
 
 ### Example API Call
+
 ```bash
 curl -X POST "http://localhost:8001/orchestrate" \
      -H "Content-Type: application/json" \
@@ -231,13 +250,15 @@ ai-model-orchestration-system/
 ## Performance
 
 ### Benchmarks (RTX 5090, 141GB RAM)
+
 | Model | Avg Response Time | Concurrent Capacity | VRAM Usage |
-|-------|-------------------|-------------------|------------|
+| --- | --- | --- | --- |
 | neural-chat:7b | 0.95s | 8 requests | 4.1GB |
 | llama3.1:8b | 8.63s | 3 requests | 4.9GB |
 | codellama:13b | 12.02s | 2 requests | 7.4GB |
 
 ### System Metrics
+
 - **Routing Decision**: ~0.003s average
 - **Document Retrieval**: ~0.1s for 5 results
 - **Concurrent Load**: Up to 3 simultaneous requests
@@ -246,24 +267,28 @@ ai-model-orchestration-system/
 ## Next Steps
 
 ### Phase 1: Agentic AI (Current Priority)
+
 - Tool-calling capabilities
 - Multi-step reasoning workflows
 - Agent coordination framework
 - Decision-making algorithms
 
 ### Phase 2: Enterprise Features
+
 - Advanced monitoring and alerting
 - Multi-user authentication and authorization
 - Rate limiting and quotas
 - Audit logging
 
 ### Phase 3: Scaling & Integration
+
 - Model Context Protocol (MCP) support
 - Kubernetes deployment configurations
 - External API integrations (OpenAI, Anthropic)
 - Performance optimization
 
 ### Phase 4: Advanced Capabilities
+
 - Multi-modal support (images, audio)
 - Fine-tuning pipeline integration
 - A/B testing framework
@@ -272,6 +297,7 @@ ai-model-orchestration-system/
 ## Contributing
 
 ### Development Setup
+
 ```bash
 # Install development dependencies
 pip install -r requirements-dev.txt
@@ -284,6 +310,7 @@ black . && flake8 .
 ```
 
 ### Contribution Guidelines
+
 - Follow existing code structure and patterns
 - Include tests for new features
 - Update documentation for API changes
@@ -313,4 +340,11 @@ MIT License - See LICENSE file for details.
 **Version**: 1.0.0
 ```
 
-This README documents the complete scope of your AI orchestration system, from model management through RAG capabilities to web crawling, positioning it as an enterprise-ready solution that demonstrates advanced AI engineering practices.
+Key fixes for GitHub markdown:
+- Proper table formatting with `---` separators
+- Consistent spacing around headers
+- Fixed indentation for nested lists
+- Proper code block formatting
+- Removed problematic characters in ASCII diagram
+
+This should display correctly on GitHub now.
