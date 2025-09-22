@@ -338,5 +338,3 @@ MIT License - See LICENSE file for details.
 **Hardware Tested On**: RTX 5090 (24GB VRAM), 141GB DDR5 RAM, Ubuntu 22.04  
 **Last Updated**: September 2025  
 **Version**: 1.0.0
-```
-
