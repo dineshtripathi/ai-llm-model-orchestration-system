@@ -362,3 +362,100 @@ MIT License - See LICENSE file for details.
 **Hardware Tested On**: RTX 5090 (24GB VRAM), 141GB DDR5 RAM, Ubuntu 22.04  
 **Last Updated**: September 2025  
 **Version**: 1.0.0
+
+### Run Locally 
+#### Step 1: Ensure Fresh Environment setup
+```bash
+cd ~/ai-model-orchestration-system
+source venv/bin/activate
+
+# Verify Python version
+python --version
+
+# Install core dependencies if not already done
+pip install fastapi uvicorn streamlit requests pydantic beautifulsoup4 lxml
+```
+
+#### Step 2: Test core orchestration components
+```bash
+# Test model pool first
+python orchestration/core/pool/model_pool.py
+
+# Test model router
+python -c "
+import sys
+sys.path.append('.')
+from orchestration.core.router.model_router import ModelRouter
+
+router = ModelRouter()
+decision = router.route_request('Write Python code for sorting')
+print(f'Query routed to: {decision[\"selected_model\"]}')
+print(f'Category: {decision[\"category\"]}')
+"
+```
+#### Step 3: Start Orchestration API
+```bash
+# Terminal 1 - Start orchestration API
+python api/orchestration_api.py
+```
+You should see
+```bash
+Load balancer started
+INFO:     Uvicorn running on http://0.0.0.0:8001
+```
+
+#### Step 4: Test the API (in another Terminal)
+```bash
+# Terminal 2 - Test the API
+source venv/bin/activate
+
+# Test system status
+curl http://localhost:8001/system/status
+
+# Test orchestration
+curl -X POST "http://localhost:8001/orchestrate" \
+     -H "Content-Type: application/json" \
+     -d '{"query": "Write Python code for bubble sort"}'
+
+```
+
+#### Step 5: Start the dashboard
+```bash
+# Terminal 3 - Start Streamlit dashboard (if API is working)
+source venv/bin/activate
+streamlit run dashboard/orchestration_dashboard.py
+```
+
+#### Step 6: Test RAG System
+```bash
+# Install RAG dependencies
+pip install chromadb sentence-transformers
+
+# Test ChromaDB
+python rag/vector_store/chroma_manager.py
+
+# Test RAG orchestration
+python rag/retrieval/rag_orchestrator.py
+```
+
+#### Step 7 : Access your system
+
+- API Documentation: http://localhost:8001/docs
+- System Status: http://localhost:8001/system/status
+- Dashboard: http://localhost:8501 (if running Streamlit)
+##### Quick Verification commands:
+```bash
+# Check if Ollama models are available
+ollama list
+
+# Test a simple orchestration request
+python -c "
+import sys
+sys.path.append('.')
+from orchestration.core.orchestrator import ModelOrchestrator
+
+orchestrator = ModelOrchestrator()
+result = orchestrator.process_request_sync('Hello, test the system')
+print(f'Response from {result[\"model\"]}: {result[\"response\"][:100]}...')
+"
+```
