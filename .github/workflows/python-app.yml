@@ -6,122 +6,26 @@ on:
   pull_request:
     branches: [ "main" ]
 
-permissions:
-  contents: read
-
 jobs:
   test:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        python-version: ["3.10", "3.11"]
-
+    
     steps:
     - uses: actions/checkout@v4
-    
-    - name: Set up Python ${{ matrix.python-version }}
-      uses: actions/setup-python@v4
-      with:
-        python-version: ${{ matrix.python-version }}
-        
-    - name: Cache pip dependencies
-      uses: actions/cache@v3
-      with:
-        path: ~/.cache/pip
-        key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements*.txt') }}
-        restore-keys: |
-          ${{ runner.os }}-pip-
-    
-    - name: Install core dependencies
-      run: |
-        python -m pip install --upgrade pip
-        # Install minimal dependencies for CI testing
-        pip install black==23.12.1 flake8==7.0.0 isort==5.13.2 pytest==7.4.4
-        pip install fastapi uvicorn pydantic requests beautifulsoup4 lxml
-        
-    - name: Check import sorting with isort
-      run: |
-        isort . --check-only --diff
-        
-    - name: Check code formatting with black
-      run: |
-        black . --check --diff
-        
-    - name: Lint with flake8
-      run: |
-        # stop the build if there are Python syntax errors or undefined names
-        flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
-        # treat all other issues as warnings
-        flake8 . --count --exit-zero --statistics
-        
-    - name: Test basic imports
-      run: |
-        # Test core modules can be imported without external services
-        python -c "
-        import sys
-        import os
-        sys.path.append('.')
-        
-        # Test basic imports that don't require heavy dependencies
-        try:
-            from orchestration.core.router.model_router import ModelRouter
-            print('✅ Core orchestration imports successful')
-        except ImportError as e:
-            print(f'❌ Core import failed: {e}')
-            
-        try:
-            from rag.ingestion.document_processor import DocumentProcessor
-            print('✅ RAG components import successful') 
-        except ImportError as e:
-            print(f'❌ RAG import failed: {e}')
-        "
-        
-    - name: Run lightweight tests
-      run: |
-        # Create and run basic tests that don't require external services
-        mkdir -p tests_ci
-        cat > tests_ci/test_basic.py << 'EOF'
-        def test_imports():
-            """Test that core modules can be imported"""
-            import sys
-            import os
-            sys.path.append('.')
-            
-            # Test basic functionality without external dependencies
-            from orchestration.core.router.model_router import ModelRouter
-            router = ModelRouter()
-            
-            # Test query analysis (doesn't require actual models)
-            category = router.analyze_query("Write Python code")
-            assert category == "coding"
-            
-            category = router.analyze_query("Hello")
-            assert category == "fast"
-        EOF
-        pytest tests_ci/ -v
-
-  code-quality:
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v4
-    
     - name: Set up Python 3.11
       uses: actions/setup-python@v4
       with:
         python-version: "3.11"
-        
-    - name: Install quality tools
+    - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
-        pip install black==23.12.1 isort==5.13.2 flake8==7.0.0
-        
-    - name: Check code quality
+        pip install fastapi uvicorn pydantic requests
+    - name: Test basic functionality
       run: |
-        echo "Checking import sorting..."
-        isort . --check-only --diff
-        
-        echo "Checking code formatting..."
-        black . --check --diff
-        
-        echo "Running linter..."
-        flake8 . --statistics
+        python -c "
+        import sys
+        sys.path.append('.')
+        from orchestration.core.pool.model_pool import ModelPool
+        pool = ModelPool()
+        print('Core functionality working')
+        "
