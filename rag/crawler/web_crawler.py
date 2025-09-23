@@ -1,3 +1,6 @@
+# Add project root to Python path
+sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(__file__))))
+
 import logging
 import os
 import sys
@@ -8,10 +11,9 @@ from typing import Dict, List, Optional
 import requests
 from bs4 import BeautifulSoup
 
-# Add project root to path
-sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(__file__))))
-
 from rag.ingestion.document_processor import DocumentProcessor
+
+# Add project root to path
 
 
 class WebCrawler:

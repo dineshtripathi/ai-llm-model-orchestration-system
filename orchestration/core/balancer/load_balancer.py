@@ -3,7 +3,7 @@ import time
 from concurrent.futures import Future, ThreadPoolExecutor
 from dataclasses import dataclass
 from queue import Queue
-from typing import Dict, Optional
+from typing import Callable, Dict, Optional
 
 
 @dataclass
@@ -13,7 +13,7 @@ class RequestTask:
     model: str
     priority: str
     timestamp: float
-    callback: Optional[callable] = None
+    callback: Optional[Callable] = None
 
 
 class LoadBalancer:
@@ -27,7 +27,7 @@ class LoadBalancer:
             "total_requests": 0,
             "completed_requests": 0,
             "failed_requests": 0,
-            "average_response_time": 0,
+            "average_response_time": 0.0,
             "current_load": 0,
         }
 
@@ -215,7 +215,7 @@ if __name__ == "__main__":
             print(f"Error getting result for '{query}': {e}")
 
     # Show stats
-    print(f"\nLoad Balancer Stats:")
+    print("\nLoad Balancer Stats:")
     stats = balancer.get_stats()
     for key, value in stats.items():
         print(f"  {key}: {value}")

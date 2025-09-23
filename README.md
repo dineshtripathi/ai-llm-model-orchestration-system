@@ -299,6 +299,14 @@ ai-model-orchestration-system/
 ### Development Setup
 
 ```bash
+source venv/bin/activate
+
+# Verify Python version
+python --version
+
+# Install core dependencies if not already done
+pip install fastapi uvicorn streamlit requests pydantic beautifulsoup4 lxml
+
 # Install development dependencies
 pip install -r requirements-dev.txt
 
@@ -308,7 +316,23 @@ python -m pytest tests/
 # Code formatting
 black . && flake8 .
 ```
+### Test Orchestration Component
+# Test model pool first
+```bash
+python orchestration/core/pool/model_pool.py
 
+# Test model router
+python -c "
+import sys
+sys.path.append('.')
+from orchestration.core.router.model_router import ModelRouter
+
+router = ModelRouter()
+decision = router.route_request('Write Python code for sorting')
+print(f'Query routed to: {decision[\"selected_model\"]}')
+print(f'Category: {decision[\"category\"]}')
+"
+```
 ### Contribution Guidelines
 
 - Follow existing code structure and patterns

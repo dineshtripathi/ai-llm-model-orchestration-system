@@ -1,15 +1,18 @@
 import os
 import sys
+
+# Add project root to Python path
+sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(__file__))))
+
 import time
 from concurrent.futures import Future
-from typing import Dict
-
-# Add the parent directory to path to find orchestration module
-sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(__file__))))
+from typing import Dict, Optional
 
 from orchestration.core.balancer.load_balancer import LoadBalancer
 from orchestration.core.pool.model_pool import ModelPool
 from orchestration.core.router.model_router import ModelRouter
+
+# Add the parent directory to path to find orchestration module
 
 
 class ModelOrchestrator:
@@ -21,14 +24,17 @@ class ModelOrchestrator:
             "total_requests": 0,
             "successful_routes": 0,
             "failed_routes": 0,
-            "average_routing_time": 0,
+            "average_routing_time": 0.0,
         }
 
         # Start the load balancer
         self.load_balancer.start()
 
     def process_request(
-        self, query: str, priority: str = "balanced", user_preference: str = None
+        self,
+        query: str,
+        priority: str = "balanced",
+        user_preference: Optional[str] = None,
     ) -> Future:
         """
         Main orchestration method that processes a user request
@@ -78,7 +84,7 @@ class ModelOrchestrator:
         self,
         query: str,
         priority: str = "balanced",
-        user_preference: str = None,
+        user_preference: Optional[str] = None,
         timeout: int = 60,
     ) -> Dict:
         """
@@ -201,7 +207,7 @@ if __name__ == "__main__":
             print(f"Failed: {result.get('error', 'Unknown error')}")
 
     # Show system status
-    print(f"\nSystem Status:")
+    print("\nSystem Status:")
     status = orchestrator.get_system_status()
     print(f"Available models: {status['model_pool']['available_models']}")
     print(f"System load: {status['system_load']:.2f}")

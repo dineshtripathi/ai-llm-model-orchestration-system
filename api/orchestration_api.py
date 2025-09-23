@@ -4,14 +4,19 @@ import sys
 # Add project root to Python path
 sys.path.append(os.path.dirname(os.path.dirname(__file__)))
 
+from typing import Optional
+
 import uvicorn
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 
-# Rest of your code...
 from orchestration.core.orchestrator import ModelOrchestrator
 
+# Add project root to Python path
+
+
 app = FastAPI(title="AI Model Orchestration API", version="1.0.0")
+# rest of code...
 
 # Initialize orchestrator
 orchestrator = ModelOrchestrator(max_concurrent_requests=3)
@@ -20,7 +25,8 @@ orchestrator = ModelOrchestrator(max_concurrent_requests=3)
 class QueryRequest(BaseModel):
     query: str
     priority: str = "balanced"
-    user_preference: str = None
+    user_preference: Optional[str] = None
+    timeout: int = 60
     timeout: int = 60
 
 
@@ -39,7 +45,9 @@ async def orchestrate_query(request: QueryRequest):
         result = orchestrator.process_request_sync(
             query=request.query,
             priority=request.priority,
-            user_preference=request.user_preference,
+            user_preference=(
+                request.user_preference if request.user_preference is not None else ""
+            ),
             timeout=request.timeout,
         )
 

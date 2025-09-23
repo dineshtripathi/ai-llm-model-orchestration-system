@@ -6,7 +6,6 @@
 # import sys
 # import os
 
-# sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(__file__))))
 # from rag.ingestion.document_processor import DocumentProcessor
 
 # class APICrawler:
@@ -202,7 +201,7 @@
 #                     results.append({
 #                         'title': result.get('title', ''),
 #                         'content': result.get('body', ''),
-#                         'url': result.get('href', ''),
+#                         'url': result.get('hre', ''),
 #                         'source': 'duckduckgo_search',
 #                         'scraped_at': datetime.now().isoformat()
 #                     })
@@ -291,6 +290,10 @@ from datetime import datetime, timedelta
 from typing import Dict, List
 
 import requests
+
+# Add project root to Python path
+# sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(__file__))))
+
 
 sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(__file__))))
 from rag.ingestion.document_processor import DocumentProcessor
@@ -453,7 +456,7 @@ class APICrawler:
                         {
                             "title": result.get("title", ""),
                             "content": result.get("body", ""),
-                            "url": result.get("href", ""),
+                            "url": result.get("hre", ""),
                             "source": "duckduckgo_search",
                             "scraped_at": datetime.now().isoformat(),
                         }

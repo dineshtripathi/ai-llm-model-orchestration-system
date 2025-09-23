@@ -1,11 +1,14 @@
 import os
 import sys
-import tempfile
 
-# Add project root to path
+# Add project root to Python path
 sys.path.append(os.path.dirname(os.path.dirname(__file__)))
 
+import tempfile
+
 from rag.ingestion.document_processor import DocumentProcessor
+
+# Add project root to path
 
 
 def test_document_chunking():

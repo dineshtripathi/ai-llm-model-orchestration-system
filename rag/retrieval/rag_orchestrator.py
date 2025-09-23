@@ -1,12 +1,15 @@
 import os
 import sys
-from typing import Dict
 
-# Add project root to path
+# Add project root to Python path
 sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(__file__))))
+
+from typing import Dict
 
 from orchestration.core.orchestrator import ModelOrchestrator
 from rag.vector_store.chroma_manager import ChromaManager
+
+# Add project root to path
 
 
 class RAGOrchestrator:
@@ -35,7 +38,7 @@ class RAGOrchestrator:
             ]
         )
 
-        enhanced_query = f"""Based on the following context documents, please answer the question.
+        enhanced_query = """Based on the following context documents, please answer the question.
 
 Context:
 {context_docs}

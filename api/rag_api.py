@@ -1,10 +1,12 @@
 import os
 import sys
 
+# Add project root to Python path
 sys.path.append(os.path.dirname(os.path.dirname(__file__)))
 
+
 import uvicorn
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI
 from pydantic import BaseModel
 
 from rag.retrieval.rag_orchestrator import RAGOrchestrator

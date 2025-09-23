@@ -24,7 +24,7 @@ def run_command(cmd, description):
 def main():
     """Run all development tools."""
     commands = [
-        ("isort . --check-only --diff", "Import sorting check"),
+        ("isort . --check-only --dif", "Import sorting check"),
         ("black . --check --diff", "Code formatting check"),
         ("flake8 .", "Linting check"),
         ("pytest tests/ -v", "Running tests"),

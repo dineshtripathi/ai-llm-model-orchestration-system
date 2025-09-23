@@ -1,12 +1,13 @@
 import os
 import sys
-import time
-from typing import Dict, Optional
 
-# Add the parent directory to path to find orchestration module
+# Add project root to Python path
 sys.path.append(
     os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(__file__))))
 )
+
+import time
+from typing import Dict, Optional
 
 from orchestration.core.pool.model_pool import ModelPool
 

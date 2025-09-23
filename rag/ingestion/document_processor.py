@@ -1,11 +1,14 @@
 import os
 import sys
-from typing import Dict, List
 
-# Add project root to path for imports
+# Add project root to Python path
 sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(__file__))))
 
+from typing import Dict, List
+
 from rag.vector_store.chroma_manager import ChromaManager
+
+# Add project root to path for imports
 
 
 class DocumentProcessor:

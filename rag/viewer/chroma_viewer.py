@@ -1,7 +1,9 @@
 import os
 import sys
 
+# Add project root to Python path
 sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(__file__))))
+
 
 from rag.vector_store.chroma_manager import ChromaManager
 
