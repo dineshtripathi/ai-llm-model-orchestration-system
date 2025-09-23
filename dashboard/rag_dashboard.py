@@ -1,9 +1,9 @@
-import json
 import os
 import sys
 
-import requests
 import streamlit as st
+
+from rag.crawler.web_crawler import WebCrawler
 
 # Add project root to path
 sys.path.append(os.path.dirname(os.path.dirname(__file__)))

@@ -1,10 +1,9 @@
 import subprocess
-import threading
 import time
 from concurrent.futures import Future, ThreadPoolExecutor
 from dataclasses import dataclass
-from queue import Empty, Queue
-from typing import Dict, List, Optional
+from queue import Queue
+from typing import Dict, Optional
 
 
 @dataclass

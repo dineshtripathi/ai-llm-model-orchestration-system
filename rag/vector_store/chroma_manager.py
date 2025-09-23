@@ -1,8 +1,7 @@
 import os
-from typing import Dict, List, Optional
+from typing import Dict, List
 
 import chromadb
-from chromadb.config import Settings
 from sentence_transformers import SentenceTransformer
 
 
@@ -35,7 +34,7 @@ class ChromaManager:
             print(
                 f"Loaded existing collection '{self.collection_name}' with {self.collection.count()} documents"
             )
-        except:
+        except Exception:
             # Create new collection
             self.collection = self.client.create_collection(
                 name=self.collection_name,

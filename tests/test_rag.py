@@ -1,9 +1,6 @@
 import os
-import shutil
 import sys
 import tempfile
-
-import pytest
 
 # Add project root to path
 sys.path.append(os.path.dirname(os.path.dirname(__file__)))

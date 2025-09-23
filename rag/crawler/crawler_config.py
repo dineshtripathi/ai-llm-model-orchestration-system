@@ -1,4 +1,12 @@
 # Configuration for different data sources
+import os
+
+# API Keys (set these as environment variables)
+API_KEYS = {
+    "news_api": os.getenv("NEWS_API_KEY"),
+    "alpha_vantage": os.getenv("ALPHA_VANTAGE_KEY"),
+}
+
 CRAWLER_CONFIGS = {
     "stackoverflow": {
         "endpoint": "https://api.stackexchange.com/2.3/questions",
@@ -22,11 +30,6 @@ CRAWLER_CONFIGS = {
     },
 }
 
-# API Keys (set these as environment variables)
-API_KEYS = {
-    "news_api": os.getenv("NEWS_API_KEY"),  # Get free key from newsapi.org
-    "alpha_vantage": os.getenv("ALPHA_VANTAGE_KEY"),  # For financial data
-}
 
 AVAILABLE_APIS = {
     "news_api": bool(API_KEYS["news_api"]),

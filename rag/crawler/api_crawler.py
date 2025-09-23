@@ -1,7 +1,7 @@
 # import requests
 # import time
 # import json
-# from typing import List, Dict, Optional
+# from typing import List, Dict
 # from datetime import datetime, timedelta
 # import sys
 # import os
@@ -284,12 +284,11 @@
 #         result = crawler.document_processor.ingest_crawled_data(all_data)
 #         print(f"Ingestion result: {result}")
 
-import json
 import os
 import sys
 import time
 from datetime import datetime, timedelta
-from typing import Dict, List, Optional
+from typing import Dict, List
 
 import requests
 

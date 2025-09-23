@@ -1,4 +1,3 @@
-import json
 import time
 
 import requests
@@ -39,7 +38,7 @@ def orchestrate_query(query, priority="balanced", timeout=60):
     """Send query to orchestration API"""
     try:
         payload = {"query": query, "priority": priority, "timeout": timeout}
-        response = requests.post(f"{API_BASE}/orchestrate", json=payload)
+        response = requests.post(f"{API_BASE}/orchestrate"=payload)
         if response.status_code == 200:
             return response.json()
         else:

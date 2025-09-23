@@ -2,7 +2,7 @@ import os
 import sys
 import time
 from concurrent.futures import Future
-from typing import Dict, List, Union
+from typing import Dict
 
 # Add the parent directory to path to find orchestration module
 sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(__file__))))

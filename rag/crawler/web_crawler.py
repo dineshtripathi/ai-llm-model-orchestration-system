@@ -4,7 +4,6 @@ import sys
 import time
 from datetime import datetime
 from typing import Dict, List, Optional
-from urllib.parse import urljoin, urlparse
 
 import requests
 from bs4 import BeautifulSoup

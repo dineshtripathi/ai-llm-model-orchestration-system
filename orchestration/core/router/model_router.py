@@ -1,7 +1,7 @@
 import os
 import sys
 import time
-from typing import Dict, List, Optional
+from typing import Dict, Optional
 
 # Add the parent directory to path to find orchestration module
 sys.path.append(

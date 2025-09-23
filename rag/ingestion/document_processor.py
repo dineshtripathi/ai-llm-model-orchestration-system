@@ -1,7 +1,6 @@
 import os
 import sys
-from pathlib import Path
-from typing import Dict, List, Optional
+from typing import Dict, List
 
 # Add project root to path for imports
 sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(__file__))))
